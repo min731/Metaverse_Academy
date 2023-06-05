@@ -1,0 +1,19 @@
+class mySum:
+    def sumRow(x):
+        for cnt,row in enumerate(x):
+            print('\n▶row:',cnt,'-'*100)
+            print(row)    
+            sum=0
+            for col in row:
+
+                sum=sum+col
+            print('col total=-->', sum)  
+    ### 열단위  sum
+    def sumCol(x):
+        rowCnt,colCnt=len(x),len(x[0])
+        for i in range(colCnt):   #  열번호
+            print('-'*100)
+            colSum=0
+            for j in range(rowCnt): # 행번호
+                colSum=colSum+data[j][i]
+            print('열단위 sum==>', colSum)
