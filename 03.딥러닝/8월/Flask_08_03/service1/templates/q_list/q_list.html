@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Title : q_list</title>
+</head>
+<body>
+    <p>q_list 입니다.</p>
+
+    <!-- jinja2 문법으로 if문 -->
+    {% if q_list %}
+
+        <!-- python list 태그 -->
+        <ul>
+            {% for q in q_list %}
+                <!-- 변수값 넣기 -->
+                <!-- a hert 태그 : 링크 -->
+                <!-- https://wikidocs.net/81046 -->
+                <li><a href="{{ url_for('question.detail', q_id=q.id)}}">{{ q.subject }}</a></li>
+                <li>{{ q.content }}</li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p> 질문이 없습니다.</p>
+    {% endif %}
+</body>
+</html>
+
