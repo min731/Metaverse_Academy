@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Title : q_detail</title>
+</head>
+<body>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+    <p>q_detail 입니다.</p>
+    <h1>{{ question.subject }}</h1>
+        <div>{{ question.content }}</div>
+        <div>{{ question.create_date }}</div>
+
+    <h5>{{ question.answer_set|length }}개의 답변이 있습니다.</h5>
+        
+        <div>
+            <ul>
+            {% for answer in question.answer_set %}
+                    <li>{{ answer.content}}</li>
+            {% endfor %}
+            </ul>
+        </div>
+    
+    <!-- 웹페이지에 데이터를 보낼 때, form에 넣어서 보냄, method='post'로 -->
+    <!-- form태그 데이터를 어떻게 넣을지 -->
+    <!-- postman의 form-data를 직접 만드는 것임 -->
+    <!-- answer bp의 create 함수 실행 -->
+    <!-- 해당 주소로 데이터를 보냄 -->
+    <form action="{{ url_for('answer.create', q_id=question.id) }}" method="post">
+        <textarea name="content" id="content" rows="15"></textarea>
+        <input type="submit" value="답변등록">
+    </form>
+
+</body>
+</html>
+

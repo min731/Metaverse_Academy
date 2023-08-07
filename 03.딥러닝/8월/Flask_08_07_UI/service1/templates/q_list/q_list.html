@@ -1,0 +1,58 @@
+<!-- 상속 받음 -->
+<!-- q_list(origin)과 비교 -->
+
+{% extends 'base.html' %}
+{% block content %}
+
+    <div class="container my-3">
+        <table class="table">
+            <thead>
+            <tr class="table-dark">
+                <th>번호</th>
+                <th>제목</th>
+                <th>작성일시</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% if q_list %}
+            {% for q in q_list %}
+            <tr>
+                <td>{{ loop.index }}</td>
+                <td>
+                    <a href="{{ url_for('question.detail', q_id=q.id) }}">{{ q.subject }}</a>
+                </td>
+                <td>{{ q.create_date }}</td>
+            </tr>
+            {% endfor %}
+            {% else %}
+            <tr>
+                <td colspan="3">질문이 없습니다.</td>
+            </tr>
+            {% endif %}
+            </tbody>
+        </table>
+        <a href="{{ url_for('question.create') }}" class="btn btn-primary">질문 등록하기</a>
+    </div>
+
+
+    <p>----------------------------------------------------------------------- 수정 전 -----------------------------------------------------------------------</p>
+    <p>q_list 입니다.</p>
+
+    <!-- jinja2 문법으로 if문 -->
+    {% if q_list %}
+
+        <!-- python list 태그 -->
+        <ul>
+            {% for q in q_list %}
+                <!-- 변수값 넣기 -->
+                <!-- a hert 태그 : 링크 -->
+                <!-- https://wikidocs.net/81046 -->
+                <li><a href="{{ url_for('question.detail', q_id=q.id)}}">{{ q.subject }}</a></li>
+                <li>{{ q.content }}</li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p> 질문이 없습니다.</p>
+    {% endif %}
+
+{% endblock %}
